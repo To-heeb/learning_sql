@@ -1,0 +1,31 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  db:
+    image: mysql
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - "mysql-db:/var/lib/mysql"
+      - ./sakila-db:/sakila-db
+      - ./start-mysql.sh:/scripts/start-mysql.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+
+  adminer:
+    image: adminer
+    volumes:
+      - adminer-view:/var/lib/adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+volumes:
+  mysql-db:
+  adminer-view:

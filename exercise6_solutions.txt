@@ -1,0 +1,12 @@
+Solutions
+
+A = {L M N O P}
+B = {P Q R S T}
+1) 
+    i) A union B = {L M N O P Q R S T}
+    ii) A union all B = {L M N O P P Q R S T}
+    iii) A intersect B = {P}
+    iv) A except B = {L M N O}
+
+2) SELECT a.first_name, a.last_name FROM actor a WHERE a.last_name LIKE '%L' UNION SELECT c.first_name, c.last_name FROM customer c  WHERE c.last_name LIKE '%L';
+ 

@@ -1,0 +1,7 @@
+Solutions
+
+1) SELECT SUBSTRING('Please find the substring in this string', 17, 9);
+
+2) SELECT SIGN(−25.76823), ABS(−25.76823);
+
+3) SELECT EXTRACT(MONTH FROM CURRENT_DATE());

@@ -1,0 +1,7 @@
+Solutions
+
+1) SELECT f.film_id, f.title FROM film f WHERE f.film_id IN (SELECT fc.film_id FROM category c JOIN film_category fc ON c.category_id = fc.category_id WHERE c.name = 'Action');
+
+2) SELECT f.film_id, f.title FROM film f WHERE (SELECT fc.film_id FROM category c JOIN film_category fc ON c.category_id = fc.category_id WHERE c.name = 'Action' AND fc.film_id = f.film_id);
+
+3) 

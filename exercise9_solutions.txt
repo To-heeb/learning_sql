@@ -4,4 +4,5 @@ Solutions
 
 2) SELECT f.film_id, f.title FROM film f WHERE (SELECT fc.film_id FROM category c JOIN film_category fc ON c.category_id = fc.category_id WHERE c.name = 'Action' AND fc.film_id = f.film_id);
 
-3) 
+3) SELECT  movie_count.full_name, movie_level.level FROM (SELECT fa.actor_id actor_id, CONCAT(a.first_name,' ', a.last_name) full_name, count(*) movies FROM film_actor fa JOIN actor a ON fa.actor_id = a.actor_id GROUP BY fa.actor_id) movie_count INNER JOIN (SELECT 'Hollywood Star' level, 30 min_roles, 99999 max_roles UNION ALL SELECT 'Prolific Actor' level, 20 min_roles, 29 max_roles UNION ALL SELECT 'Newcomer' level, 1 min_roles, 19 max_roles) movie_level ON movie_count.movies BETWEEN movie_level.min_roles AND movie_level.max_roles GROUP BY movie_count.actor_id;
+

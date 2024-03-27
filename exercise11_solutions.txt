@@ -1,0 +1,36 @@
+Solutions
+
+1) SELECT name,
+    CASE name
+        WHEN 'English' THEN 'latin1'
+        WHEN 'Italian' THEN 'latin1'
+        WHEN 'French' THEN 'latin1'
+        WHEN 'German' THEN 'latin1'
+        WHEN 'Japanese' THEN 'utf8'
+        WHEN 'Mandarin' THEN 'utf8'
+        ELSE 'Unknown'
+        END character_set
+        FROM language; 
+
+  Rewritten To  
+
+  SELECT name,
+        CASE 
+            WHEN name IN ('English', 'Italian', 'French', 'German') THEN 'latin1'
+            WHEN name IN ('Japanese', 'Mandarin') THEN 'utf8'
+            ELSE 'Unknown'
+            END character_set
+            FROM language;
+
+
+2)  SELECT rating, count(*) FROM film GROUP BY rating;
+
+    Rewritten To
+
+     SELECT
+       SUM(CASE WHEN rating = 'G' THEN 1 ELSE 0 END) G,
+       SUM(CASE WHEN rating = 'PG' THEN 1 ELSE 0 END) PG,
+       SUM(CASE WHEN rating = 'PG-13' THEN 1 ELSE 0 END) PG_13,
+       SUM(CASE WHEN rating = 'R' THEN 1 ELSE 0 END) R,
+       SUM(CASE WHEN rating = 'NC-17' THEN 1 ELSE 0 END) NC_17
+     FROM film;
